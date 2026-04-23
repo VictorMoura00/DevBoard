@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: DevBoard standards
+    url: https://github.com/VictorMoura00
+    about: Review repository standards and contribution expectations before opening an issue.

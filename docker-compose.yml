@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: devboard-db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-devboard_db}
+      POSTGRES_USER: ${POSTGRES_USER:-devboard}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-devboard}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - devboard-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-devboard} -d ${POSTGRES_DB:-devboard_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devboard-api
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__Database: Host=db;Port=5432;Database=${POSTGRES_DB:-devboard_db};Username=${POSTGRES_USER:-devboard};Password=${POSTGRES_PASSWORD:-devboard}
+    ports:
+      - "${API_HTTP_PORT:-8080}:8080"
+
+volumes:
+  devboard-postgres:

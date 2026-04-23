@@ -1,0 +1,7 @@
+tipo(escopo): descricao curta em portugues
+
+# Exemplos:
+# feat(api): adiciona integracao com scalar
+# fix(docker): corrige exposicao de porta da api
+# docs(readme): atualiza instrucoes de execucao local
+# refactor(infrastructure): extrai configuracoes para extensions

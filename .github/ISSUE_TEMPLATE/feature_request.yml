@@ -1,0 +1,27 @@
+name: Feature request
+description: Propose a new feature for the MVP or a planned post-MVP evolution.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What problem should this feature solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the proposed behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope notes
+      description: Explain how this fits the MVP and whether it adds architectural complexity.
+    validations:
+      required: true

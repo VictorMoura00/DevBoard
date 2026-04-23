@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/01 Host/">
+    <Project Path="src/DevBoard.Api/DevBoard.Api.csproj" />
+  </Folder>
+  <Folder Name="/02 Modules/">
+    <Project Path="src/DevBoard.Modules.Projects/DevBoard.Modules.Projects.csproj" />
+    <Project Path="src/DevBoard.Modules.Tasks/DevBoard.Modules.Tasks.csproj" />
+    <Project Path="src/DevBoard.Modules.Notifications/DevBoard.Modules.Notifications.csproj" />
+  </Folder>
+  <Folder Name="/03 Building Blocks/">
+    <Project Path="src/DevBoard.SharedKernel/DevBoard.SharedKernel.csproj" />
+    <Project Path="src/DevBoard.Infrastructure/DevBoard.Infrastructure.csproj" />
+  </Folder>
+</Solution>
