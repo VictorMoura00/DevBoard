@@ -1,4 +1,6 @@
 using DevBoard.Infrastructure.Database;
+using DevBoard.Infrastructure.Database.Repositories;
+using DevBoard.Modules.Projects.Data;
 using DevBoard.SharedKernel.Time;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +30,7 @@ public static class DevBoardInfrastructure
             .AddNpgSql(connectionString, name: "postgres");
 
         services.AddSingleton<ISystemClock, SystemClock>();
+        services.AddScoped<IProjectRepository, ProjectRepository>();
 
         return services;
     }

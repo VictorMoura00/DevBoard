@@ -1,6 +1,7 @@
 namespace DevBoard.IntegrationTests;
 
-public sealed class InfrastructureStartupTests(CustomWebApplicationFactory factory) : IClassFixture<CustomWebApplicationFactory>
+[Collection(IntegrationTestCollection.Name)]
+public sealed class InfrastructureStartupTests(CustomWebApplicationFactory factory)
 {
     [Fact]
     public async Task HealthEndpoint_ReturnsSuccess_WhenDatabaseIsAvailable()
