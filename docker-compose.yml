@@ -21,6 +21,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      provenance: false
     container_name: devboard-api
     depends_on:
       db:

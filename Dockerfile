@@ -8,6 +8,7 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["DevBoard.slnx", "."]
+COPY ["src/DevBoard.Api.Abstractions/DevBoard.Api.Abstractions.csproj", "src/DevBoard.Api.Abstractions/"]
 COPY ["src/DevBoard.Api/DevBoard.Api.csproj", "src/DevBoard.Api/"]
 COPY ["src/DevBoard.Infrastructure/DevBoard.Infrastructure.csproj", "src/DevBoard.Infrastructure/"]
 COPY ["src/DevBoard.SharedKernel/DevBoard.SharedKernel.csproj", "src/DevBoard.SharedKernel/"]
