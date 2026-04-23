@@ -1,26 +1,25 @@
+using DevBoard.Api.Abstractions.Routing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DevBoard.Modules.Notifications;
 
-public static class NotificationsModule
+public sealed class NotificationsModule : IApiModule
 {
-    public static IServiceCollection AddNotificationsModule(this IServiceCollection services)
+    public void AddServices(IServiceCollection services, IConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(services);
-
-        return services;
+        ArgumentNullException.ThrowIfNull(configuration);
     }
 
-    public static IEndpointRouteBuilder MapNotificationsModule(this IEndpointRouteBuilder endpoints)
+    public void MapEndpoints(IEndpointRouteBuilder endpoints)
     {
         ArgumentNullException.ThrowIfNull(endpoints);
 
         _ = endpoints.MapGroup("/notifications")
             .WithTags("Notifications");
-
-        return endpoints;
     }
 }

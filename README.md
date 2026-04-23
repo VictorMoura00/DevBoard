@@ -15,6 +15,7 @@ The main goal of this repository is to keep the project easy to run locally, eas
 
 ```text
 src/
+  DevBoard.Api.Abstractions
   DevBoard.Api
   DevBoard.Infrastructure
   DevBoard.Modules.Notifications
@@ -41,6 +42,8 @@ Available endpoints after startup:
 - Health check: `http://localhost:8080/health`
 - Scalar docs: `http://localhost:8080/docs` (Development)
 
+The API applies pending EF Core migrations automatically on startup.
+
 ## Run locally without Docker
 
 Start only PostgreSQL with Docker:
@@ -55,6 +58,20 @@ Then run the API:
 dotnet run --project src/DevBoard.Api
 ```
 
+## EF Core tools
+
+Restore the local tools manifest:
+
+```bash
+dotnet tool restore
+```
+
+Create a migration:
+
+```bash
+dotnet dotnet-ef migrations add <MigrationName> --project src/DevBoard.Infrastructure --startup-project src/DevBoard.Api --output-dir Database/Migrations
+```
+
 ## Build
 
 ```bash
@@ -66,6 +83,8 @@ dotnet build DevBoard.slnx
 ```bash
 dotnet test DevBoard.slnx
 ```
+
+Integration tests use PostgreSQL via Testcontainers, so Docker must be available when running the test suite.
 
 ## Standards
 
