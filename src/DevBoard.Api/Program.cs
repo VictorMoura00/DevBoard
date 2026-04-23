@@ -8,5 +8,8 @@ var app = builder.Build();
 
 app.ConfigurePipeline();
 app.MapApiEndpoints();
+await app.InitializeDatabaseAsync();
 
 app.Run();
+
+public partial class Program;

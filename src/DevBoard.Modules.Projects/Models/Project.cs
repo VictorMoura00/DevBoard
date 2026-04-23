@@ -12,7 +12,7 @@ public sealed class Project
 
     public ProjectStatus Status { get; set; } = ProjectStatus.Active;
 
-    public List<string> Tags { get; set; } = [];
+    public string[] Tags { get; set; } = [];
 
     public DateTimeOffset CreatedAt { get; set; }
 

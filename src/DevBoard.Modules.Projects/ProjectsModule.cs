@@ -1,26 +1,25 @@
+using DevBoard.Api.Abstractions.Routing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DevBoard.Modules.Projects;
 
-public static class ProjectsModule
+public sealed class ProjectsModule : IApiModule
 {
-    public static IServiceCollection AddProjectsModule(this IServiceCollection services)
+    public void AddServices(IServiceCollection services, IConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(services);
-
-        return services;
+        ArgumentNullException.ThrowIfNull(configuration);
     }
 
-    public static IEndpointRouteBuilder MapProjectsModule(this IEndpointRouteBuilder endpoints)
+    public void MapEndpoints(IEndpointRouteBuilder endpoints)
     {
         ArgumentNullException.ThrowIfNull(endpoints);
 
         _ = endpoints.MapGroup("/projects")
             .WithTags("Projects");
-
-        return endpoints;
     }
 }

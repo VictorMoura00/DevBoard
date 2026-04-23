@@ -1,6 +1,5 @@
-using DevBoard.Modules.Notifications;
-using DevBoard.Modules.Projects;
-using DevBoard.Modules.Tasks;
+using DevBoard.Infrastructure.Database;
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
 namespace DevBoard.Api.Extensions;
@@ -34,11 +33,22 @@ public static class WebApplicationExtensions
         ArgumentNullException.ThrowIfNull(app);
 
         app.MapHealthChecks("/health");
+        app.MapControllers();
 
         var api = app.MapGroup("/api");
-        api.MapProjectsModule();
-        api.MapTasksModule();
-        api.MapNotificationsModule();
+        api.MapDiscoveredApiModules();
+
+        return app;
+    }
+
+    public static async Task<WebApplication> InitializeDatabaseAsync(this WebApplication app)
+    {
+        ArgumentNullException.ThrowIfNull(app);
+
+        await using var scope = app.Services.CreateAsyncScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<DevBoardDbContext>();
+
+        await dbContext.Database.MigrateAsync();
 
         return app;
     }

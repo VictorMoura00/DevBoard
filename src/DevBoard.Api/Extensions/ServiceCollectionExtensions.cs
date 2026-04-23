@@ -1,7 +1,4 @@
 using DevBoard.Infrastructure;
-using DevBoard.Modules.Notifications;
-using DevBoard.Modules.Projects;
-using DevBoard.Modules.Tasks;
 
 namespace DevBoard.Api.Extensions;
 
@@ -16,13 +13,12 @@ public static class ServiceCollectionExtensions
 
         services.AddProblemDetails();
         services.AddOpenApi();
+        services.AddControllers();
         services.AddHealthChecks();
 
         services
             .AddDevBoardInfrastructure(configuration)
-            .AddProjectsModule()
-            .AddTasksModule()
-            .AddNotificationsModule();
+            .AddDiscoveredApiModules(configuration);
 
         return services;
     }
